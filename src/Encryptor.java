@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Encryptor
 {
@@ -12,12 +14,14 @@ public class Encryptor
   /** The number of columns of letterBlock, set by the constructor */
   private int numCols;
 
+  Scanner scan;
   /** Constructor*/
   public Encryptor(int r, int c)
   {
     letterBlock = new String[r][c];
     numRows = r;
     numCols = c;
+    scan = new Scanner(System.in);
   }
   
   public String[][] getLetterBlock()
@@ -130,13 +134,62 @@ public class Encryptor
           index++;
         }
       }
-      
+      for(String[] row : box){
+        for(String letter : row){
+          str += letter;
+        }
+      }
+      int count = 0;
+      for(int a = str.length(); a >=0; a--){
+        if(str.substring(a-1, a).equals("A")){
+          count++;
+        }
+        else{
+          break;
+        }
+      }
+      str = str.substring(0, str.length() - count);
     }
     return str;
   }
+
+  public String superEncryptMessage(String message){ //row shift
+    String str = "";
+    int shiftUp = 0;
+    int shiftDown = 0;
+    fillBlock(message);
+    String[][]box = new String[numRows][numCols];
+    System.out.print("Please input for numbers of row to shift (positive number shifts down, negative number shifts up):");
+    int answer = scan.nextInt();
+    if(answer > 0) {
+      shiftDown = answer % numRows;
+      shiftUp = numRows - shiftDown;
+    }
+    else{
+      shiftUp = Math.abs(answer) % numRows;
+      shiftDown = numRows - shiftUp;
+    }
+    for (int i = 0; i < shiftUp; i++) {
+      for (int j = 0; j < numCols; j++) {
+        box[i + shiftDown][j] = letterBlock[i][j];
+      }
+    }
+    for(int i = shiftUp; i < numRows; i++){
+      for(int j = 0; j < numCols; j++){
+        box[i - shiftUp][j] = letterBlock[i][j];
+      }
+    }
+
+    for(int i = 0; i < box.length; i++){
+      for(int j = 0; j < box[0].length; j++){
+        str += box[i][j];
+      }
+    }
+    return str;
+  }
+
+//  public String superDecryptMessage(String message){
+//
+//  }
 }
-// 2 3
-// 2 3
-// 4 3
-// 5 6
-// 2 4
+
