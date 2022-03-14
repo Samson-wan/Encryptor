@@ -14,13 +14,15 @@ public class Encryptor
   /** The number of columns of letterBlock, set by the constructor */
   private int numCols;
 
+  private int rowShift;
   Scanner scan;
   /** Constructor*/
-  public Encryptor(int r, int c)
+  public Encryptor(int r, int c, int rowShift)
   {
     letterBlock = new String[r][c];
     numRows = r;
     numCols = c;
+    this.rowShift = rowShift;
     scan = new Scanner(System.in);
   }
   
@@ -159,16 +161,16 @@ public class Encryptor
     int shiftDown = 0;
     fillBlock(message);
     String[][]box = new String[numRows][numCols];
-    System.out.print("Please input for numbers of row to shift (positive number shifts down, negative number shifts up):");
-    int answer = scan.nextInt();
-    if(answer > 0) {
-      shiftDown = answer % numRows;
+    if(rowShift > 0) {
+      shiftDown = rowShift % numRows;
       shiftUp = numRows - shiftDown;
     }
     else{
-      shiftUp = Math.abs(answer) % numRows;
+      shiftUp = Math.abs(rowShift) % numRows;
       shiftDown = numRows - shiftUp;
     }
+    System.out.println(shiftDown);
+    System.out.println(shiftUp);
     for (int i = 0; i < shiftUp; i++) {
       for (int j = 0; j < numCols; j++) {
         box[i + shiftDown][j] = letterBlock[i][j];
@@ -188,8 +190,21 @@ public class Encryptor
     return str;
   }
 
-//  public String superDecryptMessage(String message){
-//
+  public String superDecryptMessage(String message){ //Decrypt Row shift
+    rowShift = numRows - rowShift;
+    String str = superEncryptMessage(message);
+    return str;
+  }
+
+//  public int askIndex(){
+//    int index = 0;
+//    System.out.print("Row Encrypt(e) or Row Decrypt(d): ");
+//    String answer = scan.nextLine();
+//    if(answer.equals("e")){
+//      System.out.print("Please input for numbers of row to shift (positive number shifts down, negative number shifts up): ");
+//      index = scan.nextInt();
+//    }
+//    return index;
 //  }
 }
 

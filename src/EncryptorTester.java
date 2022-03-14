@@ -8,7 +8,7 @@ public class EncryptorTester
     // ---- TEST PART A: fillBlock ----
     // --------------------------------
     System.out.println("---- TESTING PART A ----");
-    Encryptor encryptor1 = new Encryptor(3, 5);
+    Encryptor encryptor1 = new Encryptor(3, 5, 1);
     encryptor1.fillBlock("Meet at noon");
   
     String[][] expected1 = {{"M", "e", "e", "t", " "},
@@ -30,7 +30,7 @@ public class EncryptorTester
       print2DArray(actual1);
     }
 
-    Encryptor encryptor2 = new Encryptor(3, 5);
+    Encryptor encryptor2 = new Encryptor(3, 5,1 );
     encryptor2.fillBlock("Meet at midnight");
   
     String[][] expected2 = {{"M", "e", "e", "t", " "},
@@ -52,7 +52,7 @@ public class EncryptorTester
       print2DArray(actual2);
     }
     
-    Encryptor encryptor3 = new Encryptor(4, 3);
+    Encryptor encryptor3 = new Encryptor(4, 3,1);
     encryptor3.fillBlock("That's me!");
   
     String[][] expected3 = {{"T", "h", "a"},
@@ -75,7 +75,7 @@ public class EncryptorTester
       print2DArray(actual3);
     }
     
-    Encryptor encryptor = new Encryptor(3, 4);
+    Encryptor encryptor = new Encryptor(3, 4,1);
     encryptor.fillBlock("hello");
   
     String[][] expected4 = {{"h", "e", "l", "l"},
@@ -103,7 +103,7 @@ public class EncryptorTester
     //   ---- TEST PART B: encryptBlock ----
     //   -----------------------------------
     System.out.println("\n---- TESTING PART B ----");
-    Encryptor encryptor4 = new Encryptor(2, 3);
+    Encryptor encryptor4 = new Encryptor(2, 3,1);
     encryptor4.fillBlock("ABCDEF");
     String actualEncryptedBlock1 = encryptor4.encryptBlock();
     String expectedEncryptedBlock1 = "ADBECF";
@@ -131,7 +131,7 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualEncryptedBlock2);
     }
     
-    Encryptor encryptor5 = new Encryptor(4, 2);
+    Encryptor encryptor5 = new Encryptor(4, 2,1);
     encryptor5.fillBlock("ABCDEFGHIJK");
     String actualEncryptedBlock3 = encryptor5.encryptBlock();
     String expectedEncryptedBlock3 = "ACEGBDFH";
@@ -151,7 +151,7 @@ public class EncryptorTester
     // ---- TEST PART C: encryptMessage ----
     // -------------------------------------
     System.out.println("\n---- TESTING PART C ----");
-    Encryptor encryptorTest = new Encryptor(2, 3);
+    Encryptor encryptorTest = new Encryptor(2, 3,1);
     String actualEncrypted1 = encryptorTest.encryptMessage("Meet at midnight");
     String expectedEncrypted1 = "Mte eati dmnitgAhA";
     if (actualEncrypted1.equals(expectedEncrypted1))
@@ -178,7 +178,7 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualEncrypted2);
     }
     
-    Encryptor encryptorTester = new Encryptor(4, 3);
+    Encryptor encryptorTester = new Encryptor(4, 3,1);
     String actualEncrypted3 = encryptorTester.encryptMessage("I saw this REALLY great show on Netflix about a family that moves to a small town");
     String expectedEncrypted3 = "Iats wh s iRELgaAYrtL e swneh  tooNfl o iauaxbt fi aalttmyh metaoso v  smloAa wAltnA";
     if (actualEncrypted3.equals(expectedEncrypted3))
@@ -192,7 +192,7 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualEncrypted3);
     }
     
-    Encryptor encryptorTesterB = new Encryptor(5, 6);
+    Encryptor encryptorTesterB = new Encryptor(5, 6,1);
     String actualEncrypted4 = encryptorTesterB.encryptMessage("Eeny, meeny, miny, moe, catch a tiger by the toe. If he hollers, let him go, eeny, meeny, miny, moe.");
     String expectedEncrypted4 = "Em  ceemmaneiotynnec,yy,h ,,  arh.e  e  tb Ihiytfog o letehlee eertgnes oyn,h,,y i  ,lmem mmAAAioAAAneAAAy.AAA,AAAA AAAA";
     if (actualEncrypted4.equals(expectedEncrypted4))
@@ -206,7 +206,7 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualEncrypted4);
     }
     
-    Encryptor encryptorTesterC = new Encryptor(2, 4);
+    Encryptor encryptorTesterC = new Encryptor(2, 4,1);
     String actualEncrypted5 = encryptorTesterC.encryptMessage("ABCD EFGH ABCD EFGH ABCD EFGH ABCD EFGH!");
     String expectedEncrypted5 = "A BECFDGHC DA BEFAGBHC D HE FAGBCFDG HE!";
     if (actualEncrypted5.equals(expectedEncrypted5))
@@ -225,7 +225,7 @@ public class EncryptorTester
     // ---- TEST PART D: decryptMessage ----
     // -------------------------------------
     System.out.println("\n---- TESTING PART D ----");
-    Encryptor encryptorTest2 = new Encryptor(2, 3);
+    Encryptor encryptorTest2 = new Encryptor(2, 3,1);
     String actualDecrypted1 = encryptorTest2.decryptMessage("Mte eati dmnitgAhA");
     String expectedDecrypted1 = "Meet at midnight";
     if (actualDecrypted1.equals(expectedDecrypted1))
@@ -252,7 +252,7 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualDecrypted2);
     }
     
-    Encryptor encryptorTester5 = new Encryptor(4, 3);
+    Encryptor encryptorTester5 = new Encryptor(4, 3,1);
     String actualDecrypted3 = encryptorTester5.decryptMessage("Iats wh s iRELgaAYrtL e swneh  tooNfl o iauaxbt fi aalttmyh metaoso v  smloAa wAltnA");
     String expectedDecrypted3 = "I saw this REALLY great show on Netflix about a family that moves to a small town";
     if (actualDecrypted3.equals(expectedDecrypted3))
@@ -266,7 +266,7 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualDecrypted3);
     }
     
-    Encryptor encryptorTesterD = new Encryptor(5, 6);
+    Encryptor encryptorTesterD = new Encryptor(5, 6,1);
     String actualDecrypted5 = encryptorTesterD.decryptMessage("Em  ceemmaneiotynnec,yy,h ,,  arh.e  e  tb Ihiytfog o letehlee eertgnes oyn,h,,y i  ,lmem mmAAAioAAAneAAAy.AAA,AAAA AAAA");
     String expectedDecrypted5 = "Eeny, meeny, miny, moe, catch a tiger by the toe. If he hollers, let him go, eeny, meeny, miny, moe.";
     if (actualDecrypted5.equals(expectedDecrypted5))
@@ -280,7 +280,7 @@ public class EncryptorTester
       System.out.println("  ACTUAL: " + actualDecrypted5);
     }
     
-    Encryptor encryptorTesterM = new Encryptor(2, 4);
+    Encryptor encryptorTesterM = new Encryptor(2, 4,1);
     String actualDecrypted6 = encryptorTesterM.decryptMessage("A BECFDGHC DA BEFAGBHC D HE FAGBCFDG HE!");
     String expectedDecrypted6 = "ABCD EFGH ABCD EFGH ABCD EFGH ABCD EFGH!";
     if (actualDecrypted6.equals(expectedDecrypted6))
